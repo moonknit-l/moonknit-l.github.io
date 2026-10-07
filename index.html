@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>최문호 — AI Native Engineer</title>
+  <meta name="description" content="26년차 Senior Software Engineer. LLM, AI Agent, MCP, RAG를 실제 시스템으로 통합하는 AI Native 포트폴리오." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121820;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --paper: #f5f7f6;
+      --line: rgba(18, 24, 32, 0.12);
+      --accent: #0f766e;
+      --accent-soft: #d8efe9;
+      --font-display: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+      --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+      --max: 44rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      background:
+        radial-gradient(ellipse 80% 45% at 8% -5%, rgba(15, 118, 110, 0.1), transparent 55%),
+        linear-gradient(180deg, #f8faf9 0%, var(--paper) 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    /* —— Hero —— */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-content: center;
+      padding: 4rem 0 3rem;
+      gap: 1.1rem;
+    }
+
+    .hero-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.8rem, 9vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .hero-role {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      margin: 0;
+      max-width: 36rem;
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      width: fit-content;
+      padding: 0.75rem 1.15rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .hero-cta:hover { background: var(--accent); }
+
+    /* —— Section —— */
+    section { padding: 3.5rem 0 0.5rem; }
+
+    .section-label {
+      margin: 0 0 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.55rem, 3.5vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin: 0 0 0.6rem;
+    }
+
+    .section-desc {
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* —— Works: stacked, no side collision —— */
+    .works {
+      display: grid;
+      gap: 0;
+    }
+
+    .work {
+      display: block;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--line);
+      text-decoration: none;
+    }
+
+    .work:last-child { border-bottom: 1px solid var(--line); }
+
+    .work-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.35rem 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .work-name {
+      margin: 0;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .work:hover .work-name { color: var(--accent); }
+
+    .work-period {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .work-tags span {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: var(--accent-soft);
+      padding: 0.15rem 0.45rem;
+    }
+
+    .work-body p {
+      margin: 0 0 0.7rem;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    .work-note {
+      margin: 0 0 0.7rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      padding: 0.7rem 0.85rem;
+      background: rgba(18, 24, 32, 0.04);
+      border-left: 3px solid var(--accent);
+      color: var(--ink-soft);
+    }
+
+    .work-note strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .work-url {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    /* —— Access / Auth —— */
+    .access-box {
+      margin: 0 0 1.5rem;
+      padding: 1.1rem 1.15rem;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .access-box h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .access-box p {
+      margin: 0 0 0.55rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+
+    .access-box p:last-child { margin-bottom: 0; }
+
+    .access-box ul {
+      margin: 0.4rem 0 0.55rem;
+      padding-left: 1.2rem;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .access-box li { margin-bottom: 0.3rem; }
+
+    /* —— About —— */
+    .about-text p {
+      margin: 0 0 0.85rem;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .comp-list {
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .comp-list li {
+      display: grid;
+      grid-template-columns: 6.5rem 1fr;
+      gap: 0.6rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .comp-list strong {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding-top: 0.1rem;
+    }
+
+    .comp-list span { color: var(--ink-soft); }
+
+    @media (max-width: 520px) {
+      .comp-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.4rem 0 2.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    footer .name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm 15mm 16mm;
+      }
+
+      html, body {
+        background: #fff !important;
+        color: #121820 !important;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .hero-cta { display: none !important; }
+
+      .wrap { width: 100%; margin: 0; }
+
+      .hero {
+        min-height: 0;
+        padding: 0 0 8mm;
+        gap: 4pt;
+        border-bottom: 1px solid rgba(18, 24, 32, 0.15);
+        margin-bottom: 5mm;
+      }
+
+      .hero-brand { font-size: 24pt; }
+      .hero-role { font-size: 10.5pt; color: #0f766e !important; }
+      .hero-lead { font-size: 10pt; color: #334155 !important; }
+
+      section { padding: 5mm 0 0; }
+
+      .section-title { font-size: 14pt; }
+      .section-desc { margin-bottom: 3mm; font-size: 9.5pt; }
+
+      .access-box {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 4mm;
+        padding: 3mm 3.5mm;
+        background: #f7faf9 !important;
+      }
+
+      .access-box h3 { font-size: 10.5pt; }
+      .access-box p,
+      .access-box ul { font-size: 9.5pt; }
+
+      .work {
+        padding: 3.5mm 0;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .work-name { font-size: 12pt; }
+      .work-body p { font-size: 9.5pt; }
+      .work-note {
+        font-size: 9pt;
+        background: rgba(18, 24, 32, 0.04) !important;
+      }
+      .work-url { font-size: 8.5pt; color: #0f766e !important; }
+
+      .about-text p,
+      .comp-list li { font-size: 9.5pt; }
+
+      footer {
+        margin-top: 6mm;
+        padding-top: 3mm;
+        font-size: 8.5pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1 class="hero-brand">최문호</h1>
+      <p class="hero-role">Senior Software Engineer · AI Native Engineer</p>
+      <p class="hero-lead">
+        AI를 단순히 쓰는 개발자가 아니라, 기존 소프트웨어 시스템에
+        AI Agent를 실제로 통합하는 Senior Engineer입니다.
+      </p>
+      <a class="hero-cta" href="#works">공개 데모 보기 ↓</a>
+    </header>
+
+    <section id="works" aria-labelledby="works-title">
+      <p class="section-label">Selected Works</p>
+      <h2 class="section-title" id="works-title">공개 AI Native 데모</h2>
+      <p class="section-desc">
+        Agent Workflow, MCP Registry, Skill Repository, Multi-Agent FDE Demo —
+        public 환경에서 확인할 수 있는 최근 작업입니다.
+      </p>
+
+      <aside class="access-box" aria-label="데모 접속 안내">
+        <h3>데모 접속 · 인증 안내</h3>
+        <p>
+          일부 서비스는 로그인 시 <strong>OAuth 기반 인증 서버</strong>로 연결됩니다.
+          이 인증 서버(agent-auth)도 직접 구축했으며, Google 계정으로 가입·로그인한 뒤 사용할 수 있습니다.
+        </p>
+        <ul>
+          <li>로그인 화면에서 Google 계정으로 가입/로그인하면 됩니다.</li>
+          <li>로그인 후 원래 서비스로 리다이렉트가 원활하지 않으면, 해당 서비스 페이지로 다시 들어가 로그인을 한 번 더 시도해 주세요.</li>
+        </ul>
+      </aside>
+
+      <div class="works">
+        <a class="work" href="https://dev-fde-agent-lab.laivdata.com/demo" target="_blank" rel="noopener noreferrer">
+          <div class="work-head">
+            <h3 class="work-name">fde-agent-lab</h3>
+            <span class="work-period">2026.06 – 2026.09</span>
+          </div>
+          <div class="work-tags">
+            <span>Multi-Agent</span>
+            <span>MCP</span>
+            <span>FDE Demo</span>
+          </div>
+          <div class="work-body">
+            <p>
+              AI Agent FDE(Forward Deployed Engineer) 시나리오를 보여주는 통합 Demo Hub입니다.
+              Multi-Agent·MCP·인증을 묶어 문서/PPT 등 업무 도구 시나리오를 구성했습니다.
+            </p>
+            <p class="work-note">
+              <strong>기여:</strong> Backend·Frontend 전체 구성.
+              Agent 중 <strong>문서 요약</strong>, <strong>PPT 초안 생성</strong>,
+              <strong>문서 스캔/OCR</strong>을 직접 구현했습니다.
+              나머지 Agent 2개는 동료 작업입니다.
+            </p>
+            <span class="work-url">https://dev-fde-agent-lab.laivdata.com/demo</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://dev-skill-faro.laivdata.com/" target="_blank" rel="noopener noreferrer">
+          <div class="work-head">
+            <h3 class="work-name">skill-faro</h3>
+            <span class="work-period">2026.04 – 2026.08</span>
+          </div>
+          <div class="work-tags">
+            <span>Agent Skill</span>
+            <span>Cursor</span>
+            <span>Claude Code</span>
+          </div>
+          <div class="work-body">
+            <p>
+              Cursor / Claude Code용 Agent Skill을 패키징·관리·배포하는 Repository입니다.
+              AI coding agent가 재사용할 수 있는 공통 Skill을 모아 개발 workflow를 표준화합니다.
+            </p>
+            <p><em>"내 컴퓨터에선 되는데요"를 "어느 에이전트 세션에서도 되는데요"로 바꾸는 중입니다.</em></p>
+            <span class="work-url">https://dev-skill-faro.laivdata.com/</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://dev-mflux.laivdata.com/" target="_blank" rel="noopener noreferrer">
+          <div class="work-head">
+            <h3 class="work-name">mflux</h3>
+            <span class="work-period">2025.11 – 2026.07</span>
+          </div>
+          <div class="work-tags">
+            <span>MCP Registry</span>
+            <span>Tool Interface</span>
+            <span>API Integration</span>
+          </div>
+          <div class="work-body">
+            <p>
+              기존 API를 AI Agent가 쓸 수 있는 MCP Tool로 추상화하고,
+              등록·관리하는 Service형 Dynamic MCP Registry입니다.
+              API와 Agent 사이의 연동 계층을 설계·구현했습니다.
+            </p>
+            <span class="work-url">https://dev-mflux.laivdata.com/</span>
+          </div>
+        </a>
+
+        <a class="work" href="https://deepresearch-dev.laivdata.com/" target="_blank" rel="noopener noreferrer">
+          <div class="work-head">
+            <h3 class="work-name">DeepResearch</h3>
+            <span class="work-period">2025.08 – 2026.06</span>
+          </div>
+          <div class="work-tags">
+            <span>ReAct</span>
+            <span>Tool Calling</span>
+            <span>Code Execution</span>
+          </div>
+          <div class="work-body">
+            <p>
+              ReAct(Reasoning / Action / Observation) 기반 Deep Research Agent입니다.
+              Web Search, Code Generation·Execution 등 복수 Tool을 선택·조합하는
+              Tool-using Agent Workflow를 구현했습니다.
+            </p>
+            <span class="work-url">https://deepresearch-dev.laivdata.com/</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <p class="section-label">Profile</p>
+      <h2 class="section-title" id="about-title">무엇을 해왔는지</h2>
+      <div class="about-text">
+        <p>
+          26년간 C/C++ 시스템 프로그래밍부터 Backend, 검색·미디어·CDN·인프라,
+          Full-Stack, Cloud까지 소프트웨어 개발 전반을 경험했습니다.
+        </p>
+        <p>
+          최근에는 Knowledge Graph 기반 교육 서비스 위에서
+          LLM, AI Agent, ReAct, Tool Calling, MCP, RAG, Vector Search를
+          실제 시스템으로 구현하고 있습니다.
+        </p>
+        <p>
+          Cursor·Claude Code 기반 AI Coding Workflow와
+          Agent가 기존 API·서비스를 Tool로 쓰도록 하는 인증·MCP·서비스 계층까지
+          함께 설계합니다. OAuth 기반 사내 인증 서버(agent-auth)도 직접 구축했습니다.
+        </p>
+      </div>
+      <ul class="comp-list">
+        <li>
+          <strong>AI Native</strong>
+          <span>LLM, ReAct, Tool Calling, MCP, RAG, Multi-Agent</span>
+        </li>
+        <li>
+          <strong>Auth</strong>
+          <span>OAuth, Google IdP, Agent / Service 인증</span>
+        </li>
+        <li>
+          <strong>Full-Stack</strong>
+          <span>Node.js, TypeScript, Java/Spring, React</span>
+        </li>
+        <li>
+          <strong>Infra</strong>
+          <span>C/C++, Linux, AWS, ECS, Kubernetes</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <div>
+        <span class="name">최문호</span>
+        · AI Native Portfolio
+      </div>
+      <div>데모 링크는 public 개발 환경 기준입니다.</div>
+    </footer>
+  </div>
+</body>
+</html>
